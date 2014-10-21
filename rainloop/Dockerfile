@@ -15,4 +15,7 @@ ADD ./create_config.sh /create_config.sh
 
 RUN bash ./create_config.sh
 
+# The default path is /var/www/html, but the repo was cloned into /var/www. So we need to change the default path
+RUN sed -i 's/\/var\/www\/html/\/var\/www/g' /etc/apache2/sites-enabled/000-default.conf
+
 ENTRYPOINT apachectl -DFOREGROUND
